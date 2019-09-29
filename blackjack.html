@@ -77,7 +77,7 @@ $(document).ready(function(){
       if(beregn_sum(dine_korte) > 21){
         $("#result").html("Du har tabt :( , din sum er " + beregn_sum(dine_korte));
         $("#result").innerHTML += "<br>";
-        $("#result").append(", Dealerens sum " + beregn_sum(dealerens_korte));
+        $("#result").append(", Dealerens sum er " + beregn_sum(dealerens_korte));
         i_gang_spil = false;
         dine_penge -= 5;
         $("#dine_penge").html(dine_penge);
@@ -86,7 +86,7 @@ $(document).ready(function(){
       else if (beregn_sum(dine_korte) == 21) {
         $("#result").html("BLack Jack!! " + beregn_sum(dine_korte));
         $("#result").innerHTML += "<br>";
-        $("#result").append(", Dealerens sum "  + beregn_sum(dealerens_korte));
+        $("#result").append(", Dealerens sum er "  + beregn_sum(dealerens_korte));
         i_gang_spil = false;
         dine_penge += 5;
         $("#dine_penge").html(dine_penge);
@@ -104,7 +104,7 @@ $(document).ready(function(){
   $("#stomp_knap").on("click", function(){
     if(i_gang_spil == true){
        if(beregn_sum(dine_korte) > beregn_sum(dealerens_korte) ){
-         $("#result").html("Du har vundet!" + beregn_sum(dine_korte));
+         $("#result").html("Du har vundet!, din sum er  " + beregn_sum(dine_korte));
          $("#result").innerHTML += "<br>";
          $("#result").append(", Dealerens sum" + beregn_sum(dealerens_korte));
          dine_penge += 5;
@@ -113,9 +113,9 @@ $(document).ready(function(){
 
        }
        else if (beregn_sum(dine_korte) < beregn_sum(dealerens_korte) && beregn_sum(dealerens_korte) <= 21) {
-        $("#result").html("Du har tabt! :(" + beregn_sum(dine_korte));
+        $("#result").html("Du har tabt! :( ,din sum er " + beregn_sum(dine_korte));
         $("#result").innerHTML += "<br>";
-        $("#result").append(", Dealerens sum" + beregn_sum(dealerens_korte));
+        $("#result").append(", Dealerens sum er " + beregn_sum(dealerens_korte));
 
          dine_penge -= 5;
          $("#dine_penge").html(dine_penge);
@@ -124,10 +124,18 @@ $(document).ready(function(){
 
        }
        else if(beregn_sum(dealerens_korte) > 21){
-         $("#result").html("Du har vundet!" + beregn_sum(dine_korte));
+         $("#result").html("Du har vundet!, din sum er " + beregn_sum(dine_korte));
          $("#result").innerHTML += "<br>";
-         $("#result").append(", Dealerens sum" + beregn_sum(dealerens_korte));
+         $("#result").append(", Dealerens sum er " + beregn_sum(dealerens_korte));
          dine_penge += 5;
+         $("#dine_penge").html(dine_penge);
+         i_gang_spil = false;
+       }
+       else if(beregn_sum(dine_korte) == beregn_sum(dealerens_korte) ){
+         $("#result").html("Spillet er uafgjort, din sum er " + beregn_sum(dine_korte));
+         $("#result").innerHTML += "<br>";
+         $("#result").append(", Dealerens sum er " + beregn_sum(dealerens_korte));
+         dine_penge += 2.5;
          $("#dine_penge").html(dine_penge);
          i_gang_spil = false;
        }
@@ -171,6 +179,11 @@ $(document).ready(function(){
 
       var dealer_random_number = Math.floor((Math.random() * 11) + 1);
       dealerens_korte.push(dealer_random_number);
+    }
+    if(beregn_sum(dine_korte) == 22){
+      dine_korte[1] = 1
+      $("#dine_sum").html(dine_korte[0]+" " + dine_korte[1]);
+
     }
       $("#dealerens_korte").html("X "+dealerens_korte[1]);
   };
