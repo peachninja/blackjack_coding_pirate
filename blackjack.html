@@ -185,6 +185,15 @@ $(document).ready(function(){
       $("#dine_sum").html(dine_korte[0]+" " + dine_korte[1]);
 
     }
+      else if (beregn_sum(dine_korte) == 21) {
+      $("#result").html("BLack Jack!! " + beregn_sum(dine_korte));
+      $("#result").innerHTML += "<br>";
+      $("#result").append(", Dealerens sum er "  + beregn_sum(dealerens_korte));
+      i_gang_spil = false;
+      dine_penge += 5;
+      $("#dine_penge").html(dine_penge);
+
+    }
       $("#dealerens_korte").html("X "+dealerens_korte[1]);
   };
 
